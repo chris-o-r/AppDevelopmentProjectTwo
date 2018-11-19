@@ -26,7 +26,6 @@ public class UserController {
 		return "signup";
 	}
 	
-	
 	/**
 	 * Handles put requests for adding a new user
 	 * @param user

@@ -3,6 +3,7 @@ package ie.chris;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import ie.chris.services.ProjectService;
@@ -19,14 +20,18 @@ public class DataLoader implements ApplicationRunner{
 	@Autowired
 	UserService userService;
 	
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
 		User user = new User();
-		user.setFirstName("User"); 
-		user.setSecondName("One"); 
-		user.setEmail("email@lki.com");
-		user.setPassword("password");
+		user.setFirstName("Chris"); 
+		user.setSecondName("O'Riordan"); 
+		user.setEmail("chris@email.com");
+		user.setPassword(passwordEncoder.encode("password"));
 		userService.saveUser(user);
 		
 		//Adding Data For Projects 
@@ -36,7 +41,6 @@ public class DataLoader implements ApplicationRunner{
 		project.setCreator(user);
 		projectService.save(project);
 		
-		Project test = projectService.findProject(1);
 		
 	}
 
