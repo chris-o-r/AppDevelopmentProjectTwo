@@ -7,8 +7,8 @@ import ie.chris.domain.User;
 public interface IUserService {
 	User findUserById(int id);
 	boolean deleteProjectById(int id);
-	User findUserByName(String projectName);
+	User findUserByEmail(String projectName);
 	List<User> listUsersInAlphabeticalOrder(); 
-	String findUserNameById(int id);
-	void saveUser(User user);
+	String findUserEmailById(int id);
+	boolean saveUser(User user);
 }

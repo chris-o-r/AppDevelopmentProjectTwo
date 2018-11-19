@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crowd-Funder Sign Up</title>
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="signup-form">
+			<form th:action="@{/newcounty}" method="post" th:object=${county}">
+				<h2>Register</h2>
+				<p class="hint-text">Create your account. It's free and only
+					takes a minute.</p>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-6">
+							<input type="text" class="form-control" th:field="{firstName}"
+								placeholder="First Name" required="required">
+						</div>
+						<div class="col-xs-6">
+							<input type="text" class="form-control" th:field="{secondName}"
+								placeholder="Last Name" required="required">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="email" class="form-control" th:field="{email}"
+						placeholder="Email" required="required">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" th:field="{password}"
+						placeholder="Password" required="required">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="confirm_password"
+						placeholder="Confirm Password" required="required">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-lg btn-block" th:value="#{signup.handleAddCountyRequest}">Register
+						Now</button>
+				</div>
+			</form>
+			<div class="text-center">
+				Already have an account? <a href="#">Sign in</a>
+			</div>
+		</div>
+	</div>
+	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

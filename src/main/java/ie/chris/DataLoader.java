@@ -21,8 +21,12 @@ public class DataLoader implements ApplicationRunner{
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		
 		User user = new User();
-		user.setName("User One");
+		user.setFirstName("User"); 
+		user.setSecondName("One"); 
+		user.setEmail("email@lki.com ");
+		user.setPassword("password");
 		userService.saveUser(user);
 		
 		//Adding Data For Projects 

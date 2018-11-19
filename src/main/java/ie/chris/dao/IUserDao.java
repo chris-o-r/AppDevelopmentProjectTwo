@@ -7,6 +7,6 @@ import ie.chris.domain.User;
 public interface IUserDao extends JpaRepository<User, Integer>{
 
 	User findById(int id); 
-	User findByName(String name); 
+	User findByEmail(String email); 
 	boolean existsById(int id);
 }

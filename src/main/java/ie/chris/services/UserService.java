@@ -29,9 +29,8 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User findUserByName(String projectName) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findUserByEmail(String email) {
+		return userDao.findByEmail(email); 
 	}
 
 	@Override
@@ -41,16 +40,24 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public String findUserNameById(int id) {
+	public String findUserEmailById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveUser(User user) {
+	public boolean saveUser(User user) {
+		//Rules Out Null Input
 		if (user != null) {
-			userDao.save(user);
+			//Ensures the user does not already exist by that email
+			if (findUserByEmail(user.getEmail()) == null) {
+				//Creating the user
+				userDao.save(user);
+				return true;
+			}
+			return false;
 		}
+		return false;
 	}
 	
 	
