@@ -25,7 +25,7 @@ public class DataLoader implements ApplicationRunner{
 		User user = new User();
 		user.setFirstName("User"); 
 		user.setSecondName("One"); 
-		user.setEmail("email@lki.com ");
+		user.setEmail("email@lki.com");
 		user.setPassword("password");
 		userService.saveUser(user);
 		

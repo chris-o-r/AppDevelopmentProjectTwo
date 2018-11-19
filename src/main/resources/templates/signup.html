@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,37 +11,37 @@
 <body>
 	<div class="container">
 		<div class="signup-form">
-			<form th:action="@{/newcounty}" method="post" th:object=${county}">
+			<form id="newUserForm" method="post" th:action="@{/user}" th:object="${user}">
 				<h2>Register</h2>
-				<p class="hint-text">Create your account. It's free and only
-					takes a minute.</p>
+				<p class="hint-text">Create your account. It's free and only takes a minute.</p>
 				<div class="form-group">
 					<div class="row">
 						<div class="col-xs-6">
-							<input type="text" class="form-control" th:field="{firstName}"
-								placeholder="First Name" required="required">
+							<input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name" required="required">
+							<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" >Error</span>
 						</div>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" th:field="{secondName}"
-								placeholder="Last Name" required="required">
+							<input type="text" class="form-control" th:field="*{secondName}" placeholder="Last Name" required="required">
+							<span th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}" >Error</span>
+							
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<input type="email" class="form-control" th:field="{email}"
-						placeholder="Email" required="required">
+					<input type="email" class="form-control" th:field="*{email}" placeholder="Email" required="required">
+					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Error</span>
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" th:field="{password}"
-						placeholder="Password" required="required">
+					<input type="password" class="form-control" th:field="*{password}" placeholder="Password" required="required">
+					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >Error</span>
+					
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" name="confirm_password"
-						placeholder="Confirm Password" required="required">
+					<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+					<!-- Add logic for confirm password errors --> 
 				</div>
 				<div class="form-group">
-					<button type="submit" class="btn btn-success btn-lg btn-block" th:value="#{signup.handleAddCountyRequest}">Register
-						Now</button>
+					<button type="submit" class="btn btn-success btn-lg btn-block" th:value="#{signup.handleAddCountyRequest}">Register Now</button>
 				</div>
 			</form>
 			<div class="text-center">

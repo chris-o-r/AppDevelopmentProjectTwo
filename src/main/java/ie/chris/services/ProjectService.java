@@ -51,7 +51,6 @@ public class ProjectService implements IProjectService{
 	public void save(Project project) {
 		if (project != null) {
 			projectDao.save(project);
-
 		}
 		
 	}
