@@ -28,4 +28,9 @@ public class ProjectController {
 		return "project";
 	}
 	
+	@GetMapping("/project/create")
+	public String handleRequestForCreateAProjectPage() {
+		return "createaproject"; 
+	}
+	
 }

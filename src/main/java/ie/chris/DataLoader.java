@@ -48,6 +48,16 @@ public class DataLoader implements ApplicationRunner{
 		project.setCreator(user);
 		projectService.save(project);
 		
+		 
+		Project projectTwo = new Project();
+		projectTwo.setName("Project Two");
+		now = LocalDateTime.now();  
+		projectTwo.setDateCreated(now.toString());
+		projectTwo.setInfo("This is the descrption for project Two");
+		projectTwo.setGoal(10000.0);
+		projectTwo.setCreator(user);
+		projectService.save(projectTwo);
+		
 		
 	}
 
