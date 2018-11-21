@@ -1,9 +1,12 @@
 package ie.chris;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import ie.chris.services.ProjectService;
@@ -21,8 +24,8 @@ public class DataLoader implements ApplicationRunner{
 	UserService userService;
 	
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+//	@Autowired
+	//PasswordEncoder passwordEncoder;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -31,13 +34,16 @@ public class DataLoader implements ApplicationRunner{
 		user.setFirstName("Chris"); 
 		user.setSecondName("O'Riordan"); 
 		user.setEmail("chris@email.com");
-		user.setPassword(passwordEncoder.encode("password"));
+		user.setPassword("password");
 		userService.saveUser(user);
 		
 		//Adding Data For Projects 
 		Project project = new Project();
 		project.setName("Project One");
-		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		project.setDateCreated(now.toString());
+		project.setInfo("This is the descrption");
 		project.setCreator(user);
 		projectService.save(project);
 		

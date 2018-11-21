@@ -1,5 +1,6 @@
 package ie.chris.domain;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,37 @@ public class Project {
 	@ManyToMany(mappedBy="pledges", fetch=FetchType.LAZY, cascade= CascadeType.ALL)
 	private List<User> pledgies = new ArrayList<User>();
 	
-	 public Project() {
+	@Column(nullable = false)
+	private String info; 
+	
+	@Column(nullable = false)
+	private String dateCreated; 
+	
+	 public List<User> getPledgies() {
+		return pledgies;
+	}
+
+	public void setPledgies(List<User> pledgies) {
+		this.pledgies = pledgies;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public String getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Project() {
 	 }
 	
 	public String getName() {
