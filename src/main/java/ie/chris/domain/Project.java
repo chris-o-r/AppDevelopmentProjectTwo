@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -41,8 +43,30 @@ public class Project {
 	@Column(nullable = false)
 	private String info; 
 	
+	public double getGoal() {
+		return goal;
+	}
+
+	public void setGoal(double goal) {
+		this.goal = goal;
+	}
+
+	public double getCurrentAmmount() {
+		return currentAmmount;
+	}
+
+	public void setCurrentAmmount(double currentAmmount) {
+		this.currentAmmount = currentAmmount;
+	}
 	@Column(nullable = false)
-	private String dateCreated; 
+	private String dateCreated;
+	
+	@Column(nullable = false)
+	@DecimalMin("1.0") 
+	private double goal;
+	
+	@Column
+	private double currentAmmount; 
 	
 	 public List<User> getPledgies() {
 		return pledgies;

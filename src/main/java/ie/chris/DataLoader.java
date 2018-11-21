@@ -44,6 +44,7 @@ public class DataLoader implements ApplicationRunner{
 		LocalDateTime now = LocalDateTime.now();  
 		project.setDateCreated(now.toString());
 		project.setInfo("This is the descrption");
+		project.setGoal(10000.0);
 		project.setCreator(user);
 		projectService.save(project);
 		

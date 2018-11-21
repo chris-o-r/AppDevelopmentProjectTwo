@@ -37,8 +37,7 @@ public class ProjectService implements IProjectService{
 
 	@Override
 	public List<Project> listInAlphabeticalOrder() {
-		// TODO Auto-generated method stub
-		return null;
+		return  projectDao.findAllByOrderByNameAsc();
 	}
 
 	@Override

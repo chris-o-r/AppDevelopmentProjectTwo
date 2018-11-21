@@ -10,6 +10,7 @@ public interface IProjectDao extends JpaRepository<Project, Integer> {
 	
 	Project findById(int id);
 	Project findProjectByName(String projectName); 
+	List<Project> findAllByOrderByNameAsc();
 	//List<Project> findAllProjects();  	
 	
 }
