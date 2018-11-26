@@ -9,10 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import ie.chris.services.ProjectService;
-import ie.chris.services.UserService;
-import ie.chris.domain.Project;
-import ie.chris.domain.User;
+import ie.chris.services.*;
+import ie.chris.domain.*;
 
 @Component
 public class DataLoader implements ApplicationRunner{
@@ -23,9 +21,8 @@ public class DataLoader implements ApplicationRunner{
 	@Autowired
 	UserService userService;
 	
-
-//	@Autowired
-	//PasswordEncoder passwordEncoder;
+	@Autowired
+	PledgeService pledgeService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -34,6 +31,13 @@ public class DataLoader implements ApplicationRunner{
 		user.setFirstName("Chris"); 
 		user.setSecondName("O'Riordan"); 
 		user.setEmail("chris@email.com");
+		user.setPassword("password");
+		userService.saveUser(user);
+		
+		user = new User();
+		user.setFirstName("User"); 
+		user.setSecondName("33432"); 
+		user.setEmail("user@email.com");
 		user.setPassword("password");
 		userService.saveUser(user);
 		
@@ -48,6 +52,11 @@ public class DataLoader implements ApplicationRunner{
 		project.setCreator(user);
 		projectService.save(project);
 		
+		Pledge pledge = new Pledge(); 
+		pledge.setUser(user);
+		pledge.setProject(project);
+		pledge.setPledged(30.0);
+
 		 
 		Project projectTwo = new Project();
 		projectTwo.setName("Project Two");

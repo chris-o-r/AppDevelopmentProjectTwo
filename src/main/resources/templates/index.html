@@ -13,20 +13,20 @@
 <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/index-style.css}"
-	href="/css/index-style.css" type="text/css" />
-
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/index-style.css}" href="/css/index-style.css" type="text/css" />
+	<link rel = "stylesheet" th:href="@{/css/nav-bar-style.css}" href = "/css/nav-bar-style.css" type = "text/css"/>
 </head>
 
 <body>
 
+	
 	<!-- Navigation -->
 	<ul>
 		<li><a class="active" href="#home">Home</a></li>
-		<li><a href="#news">News</a></li>
+		<li><a href="/">Projects</a></li>
 		<li><a href="#contact">Contact</a></li>
-		<li><a href="#about">About</a></li>
+		<li><a href="/project/create">Create A Project</a></li>
 	</ul>
 	<!-- Page Content -->
 	<div class="container">
@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="d-flex flex-row bd-highlight mb-3" id ="project-box" th:each="project,iterationCount : ${projects}" th:class="${iterationCount.even}? 'even'" th:object="${project}">
 	  			<div class="p-2 bd-highlight">
-	  				<a href ="#"  th:text="*{name}" >Project</a>
+	  				<a th:href="'/project/'+*{id}" th:text="*{name}">Project</a>
 	  				<p th:text="*{info}">Project Description</p>
 	  				<span>Goal: $</span><span th:text="*{goal}">Amount</span><p/>
 	  				<span>Current: $</span><span th:text="*{currentAmmount}">Amount</span><p/>

@@ -1,6 +1,5 @@
 package ie.chris.domain;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +36,19 @@ public class Project {
     @OnDelete(action = OnDeleteAction.CASCADE)
 	private User creator; 
 	
-	@ManyToMany(mappedBy="pledges", fetch=FetchType.LAZY, cascade= CascadeType.ALL)
-	private List<User> pledgies = new ArrayList<User>();
+	@OneToMany(mappedBy="project", cascade= CascadeType.ALL)
+	private List<Pledge> pledges = new ArrayList<Pledge>();
 	
 	@Column(nullable = false)
 	private String info; 
+	
+	@Column(nullable = false)
+	@DecimalMin("1.0") 
+	private double goal;
+	
+
+	public Project() {
+	 }
 	
 	public double getGoal() {
 		return goal;
@@ -61,19 +68,15 @@ public class Project {
 	@Column(nullable = false)
 	private String dateCreated;
 	
-	@Column(nullable = false)
-	@DecimalMin("1.0") 
-	private double goal;
-	
 	@Column
 	private double currentAmmount; 
 	
-	 public List<User> getPledgies() {
-		return pledgies;
+	public List<Pledge> getPledgies() {
+		return pledges;
 	}
 
-	public void setPledgies(List<User> pledgies) {
-		this.pledgies = pledgies;
+	public void setPledgies(List<Pledge> pledges) {
+		this.pledges = pledges;
 	}
 
 	public String getInfo() {
@@ -91,9 +94,6 @@ public class Project {
 	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-
-	public Project() {
-	 }
 	
 	public String getName() {
 		return name;

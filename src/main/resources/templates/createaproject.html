@@ -1,59 +1,40 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
+<title>Create A Project</title>
 
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Crowd Funder - Create A Project</title>
-
-<!-- Bootstrap core CSS -->
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
-
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/create-a-project-style.css}"
+	href="/css/create-a-project-style.css.css" type="text/css" />
 
 </head>
 
 <body>
+	<div class="main">
 
-	<div class="container">
-		<div class="row text-center">
-			<h2>Create A Project</h2>
-		</div>
-
-		<div class="row">
-			<form method="post">
-
-				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Project Name" />
-				</div>
-
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text">$</span>
-					</div>
-					<input type="text" class="form-control"
-						aria-label="Amount (to the nearest dollar)">
-					<div class="input-group-append">
-						<span class="input-group-text">.00</span>
-					</div>
-				</div>
-
-				<div class="input-group">
-					<textarea class="form-control" placeholder="Project Description"></textarea>
-				</div>
+		<h1>Create A Project</h1>
+		<div id="form-container">
+			<form method="post" th:action="@{/project}" th:object="${project}">
+				<label for="projectName">Project Name: </label> 
+				<input type="text" id="projectName" 
+				name="projectName" class="form-item" 
+				placeholder="Please Enter The Project Name" 
+				th:field="*{name}"/> 
+				<label for="projectDescription">Project Description </label>
+				<textarea class="form-item" placeholder="Please Enter The Project Description"
+				th:field="*{info}">
+				</textarea>
+				<label for="projectAmmount">Project Ammount</label> 
+				<br>
+				<input type="number" id="projectAmmount" class="form-item" 
+				name="projectAmmount" min=10 placeholder = "ammount" th:field="*{goal}" />
+		
+				<input type = "submit" text = "submit"/>
 
 			</form>
+
 		</div>
+
 	</div>
-
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
-	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>

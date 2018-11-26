@@ -42,8 +42,8 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany( fetch=FetchType.EAGER, cascade= CascadeType.ALL)
-	private List<Project> pledges = new ArrayList<Project>(); 
+	@OneToMany(mappedBy="user", cascade= CascadeType.ALL)
+	private List<Pledge> pledges = new ArrayList<Pledge>(); 
 	
 	@OneToMany(mappedBy="creator", fetch=FetchType.EAGER, cascade= CascadeType.ALL)
 	private List<Project> projects = new ArrayList<Project>();
@@ -83,14 +83,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public List<Project> getPledges() {
-		return pledges;
-	}
-
-	public void setPledges(List<Project> pledges) {
-		this.pledges = pledges;
-	}
+//
+//	public List<Pledge> getPledges() {
+//		return pledges;
+//	}
+//
+//	public void setPledges(List<Pledge> pledges) {
+//		this.pledges = pledges;
+//	}
 
 	public List<Project> getProjects() {
 		return projects;
