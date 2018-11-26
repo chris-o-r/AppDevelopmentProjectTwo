@@ -5,4 +5,5 @@ import ie.chris.domain.Project;
 
 public interface IPledgeService {
 	boolean savePledge(Pledge pledge);
+	int getNumProjectsForPledge(Project project);
 }

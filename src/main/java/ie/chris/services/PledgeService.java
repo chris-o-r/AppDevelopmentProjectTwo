@@ -54,5 +54,12 @@ public class PledgeService implements IPledgeService {
 		}
 		return false;
 	}
-
+	
+	public int getNumProjectsForPledge(Project project) {
+		int res = 0; 
+		if (project != null) {
+			res = pledgeDao.countPledgesForProject(project.getId());
+		}
+		return res; 
+	}
 }

@@ -49,6 +49,9 @@ public class ProjectController {
 		Pledge pledge = new Pledge(); 
 		pledge.setProject(project);
 		model.addAttribute("pledge", pledge);
+		
+		int numPledges = pledgeService.getNumProjectsForPledge(project); 
+		model.addAttribute("numPledges", Integer.toString(numPledges));
 		return "viewaproject";
 	}
 	
