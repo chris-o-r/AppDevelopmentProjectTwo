@@ -35,7 +35,7 @@ public class PledgeService implements IPledgeService {
 		if (user != null) {
 			List<Project> projects = (List<Project>) projectService.findProjectsByUser(user);
 			for(int i=0; i<projects.size(); i++) {
-
+				
 				Project project = projects.get(i); 
 				if (project.getId() == pledgeProject.getId()) {
 					userOwnsProject = true; 
@@ -46,8 +46,10 @@ public class PledgeService implements IPledgeService {
 
 
 
-			if (userOwnsProject == false) {
+			if (userOwnsProject == false && pledge.getProject().getStatus() == true) {
+				//Savivng the pledge 
 				pledgeDao.save(pledge);
+				//Updating the project pledged ammunt 
 				projectService.updatePledgedAmmount(pledge.getPledged(), pledge.getProject());
 				return true;
 			}

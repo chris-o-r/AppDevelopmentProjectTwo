@@ -31,6 +31,6 @@ public interface IProjectDao extends JpaRepository<Project, Integer> {
 	
 	@Modifying(clearAutomatically = true)
 	@Transactional
-	@Query("UPDATE Project project set project.status =: status where project.id =: projectId")
+	@Query("UPDATE Project project set project.status =:status where project.id =:projectId")
 	void updateProjectStatus(@Param("projectId")int projectId, @Param("status")boolean status);
 }

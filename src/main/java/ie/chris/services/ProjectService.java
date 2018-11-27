@@ -72,8 +72,6 @@ public class ProjectService implements IProjectService{
 			project.setCreator(userService.findUserById(2));
 			//Saving the project
 			projectDao.save(project);
-			
-			
 			return true;
 		}else {
 			return res; 
@@ -83,7 +81,8 @@ public class ProjectService implements IProjectService{
 	@Override
 	public boolean updatePledgedAmmount(double ammount, Project project) {
 		if (project != null && ammount > 0 ) {
-			projectDao.updateCurrentAmmount(project.getId(), ammount);
+			double newAmmount = project.getCurrentAmmount() + ammount;
+			projectDao.updateCurrentAmmount(project.getId(), newAmmount);
 			project = findProject(project.getId());
 			if (project.getCurrentAmmount() >= project.getGoal()) {
 				project.setStatus(false);

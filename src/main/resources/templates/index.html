@@ -37,8 +37,8 @@
 		</div>
 		
 		<div class="row">
-			<div class="d-flex flex-row bd-highlight mb-3" id ="project-box" th:each="project,iterationCount : ${projects}" th:class="${iterationCount.even}? 'even'" th:object="${project}">
-	  			<div class="p-2 bd-highlight">
+			<div class="d-flex flex-row bd-highlight mb-3" th:each="project,iterationCount : ${projects}" th:class="${iterationCount.even}? 'even'" th:object="${project}">
+	  			<div class="p-2 bd-highlight" th:if="*{status == true}" id ="project-box" 	             	>
 	  				<a th:href="'/project/'+*{id}" th:text="*{name}">Project</a>
 	  				<p th:text="*{info}">Project Description</p>
 	  				<span>Goal: $</span><span th:text="*{goal}">Amount</span><p/>

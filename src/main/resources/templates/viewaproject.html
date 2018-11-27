@@ -54,12 +54,16 @@
 					</div>
 					<hr>
 				</div>
-				<form method="post" th:action="@{/pledge}" th:object="${pledge}">
-					<input type="hidden" th:field="*{project}" value="${project}" /> <input
-						type="number" min=10 placeholder="Ammount To Pledge"
-						th:field="*{pledged}" /> <input type="submit" text="submit"
-						value="Pledge" />
-				</form>
+				
+				<div class = "create-pledge-form-container" th:if="*{status == true}">
+					<form method="post" th:action="@{/pledge}" th:object="${pledge}">
+						<input type="hidden" th:field="*{project}" value="${project}" /> <input
+							type="number" min=10 placeholder="Ammount To Pledge"
+							th:field="*{pledged}" /> <input type="submit" text="submit"
+							value="Pledge" />
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</div>
