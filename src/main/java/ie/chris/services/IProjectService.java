@@ -13,4 +13,5 @@ public interface IProjectService {
 	List<Project> listInAlphabeticalOrder(); 
 	List<Project> findProjectsByUser(User user);
 	boolean save(Project project);
+	boolean updateProjectInfo(Project project);
 }

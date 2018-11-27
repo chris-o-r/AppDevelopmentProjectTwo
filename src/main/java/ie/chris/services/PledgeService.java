@@ -55,6 +55,10 @@ public class PledgeService implements IPledgeService {
 		return false;
 	}
 	
+	public List<Pledge> findAll() {
+		return  pledgeDao.findAll(); 
+	}
+	
 	public int getNumProjectsForPledge(Project project) {
 		int res = 0; 
 		if (project != null) {

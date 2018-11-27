@@ -86,4 +86,27 @@ public class ProjectController {
 		
 	}
 	
+	@GetMapping("/project/edit/{id}")
+	public String handlePageRequestForEditDescriptionPage(@PathVariable(name="id") int id, Model model) {
+		Project project = projectService.findProject(id);
+		if(project != null) {
+			model.addAttribute("project", project);
+			return "editdescription"; 
+		}
+		return "error"; 
+	}
+	
+	
+	@PostMapping("/project/update/info")
+	public String handleUpdateDescriptionRequest(Project project, RedirectAttributes redirectAttributes) {
+		String info = project.getInfo();
+		project = projectService.findProject(project.getId());
+		project.setInfo(info);
+		
+		if (projectService.updateProjectInfo(project)) {
+			return "redirect:/user";
+		}
+		
+		return "/error";
+	}
 }

@@ -56,7 +56,7 @@ public class DataLoader implements ApplicationRunner{
 		pledge.setUser(user);
 		pledge.setProject(project);
 		pledge.setPledged(30.0);
-
+		pledgeService.savePledge(pledge);
 		 
 		Project projectTwo = new Project();
 		projectTwo.setName("Project Two");

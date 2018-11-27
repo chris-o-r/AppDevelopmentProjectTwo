@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Crowd Funder</title>
+
+<!-- Bootstrap core CSS -->
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/edit-description-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+	<!-- Navigation -->
+	<ul>
+		<li><a class="active" href="#home">Home</a></li>
+		<li><a href="/">Projects</a></li>
+		<li><a href="/user">Account</a></li>
+		<li><a href="/project/create">Create A Project</a></li>
+	</ul>
+	
+	<!-- Main Content -->
+	<div class = "container" >
+	
+		<div class = "row">
+			<h3>Edit Project Description</h3>
+		</div>
+	
+		<form method="post" th:action="@{/project/update/info}" th:object="${project}">
+			<input type = "hidden" th:field="*{id}" value="*{id}">
+			<textarea rows="" cols="" th:field="*{info}"></textarea>
+			<input type="submit" text="submit" value="Pledge" />
+		</form>
+	
+	</div>
+	
+</body>
+
+</html>

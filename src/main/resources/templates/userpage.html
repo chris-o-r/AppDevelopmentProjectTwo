@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Crowd Funder</title>
+
+<!-- Bootstrap core CSS -->
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/nav-bar-style.css" type="text/css" />
+<link rel="stylesheet" href="/css/user-page-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+	<!-- Navigation -->
+	<ul>
+		<li><a class="active" href="#home">Home</a></li>
+		<li><a href="/">Projects</a></li>
+		<li><a href="/user">Account</a></li>
+		<li><a href="/project/create">Create A Project</a></li>
+	</ul>
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="boxed row" th:object="${user}">
+			<h2 class=text-center>User info</h2>
+			<h3 th:text="*{firstName}"></h3>
+			<span>Name</span>
+			<hr>
+
+			<h3 th:text="*{email}"></h3>
+			<span>Email</span>
+
+			<hr>
+			<h3></h3>
+			<span>Name</span>
+			<hr>
+		</div>
+
+		<div class="row boxed">
+			<h2 class=text-center>Projects Owned</h2>
+			<div class="boxed" th:each="project,iterationCount : ${projectsOwned}" th:class="${iterationCount.even}? 'even'" th:object="${project}">
+				<div class="boxed">
+					<a th:href="'/project/'+*{id}" th:text="*{name}">Project</a>
+					<p th:text="*{info}">Project Description</p>
+					<span>Goal: $</span><span th:text="*{goal}">Amount</span>
+					<p />
+					<span>Current: $</span><span th:text="*{currentAmmount}">Amount</span>
+					<p />
+					<div class = "button-container float-right">
+						<a th:href="'project/edit/' + *{id}" class="btn btn-primary btn-md" role="button" aria-disabled="true">
+							Edit Project
+						</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row boxed" >
+			<h2 class=text-center>Pledges</h2>
+			<div class="boxed row-sm" th:each = "pledge, iterationCount : ${projectsPledged}" th:class = "${iterationCount.even}? 'even'" th:object = "${pledge}">
+				<div class = "boxed row-sm">
+					<h4 th:text="'Project Name' + *{project.Name}"></h4>
+					<h4 th:text="'Ammount: ' + *{pledged}"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

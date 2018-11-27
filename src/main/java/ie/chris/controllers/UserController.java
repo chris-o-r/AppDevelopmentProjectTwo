@@ -1,5 +1,7 @@
 package ie.chris.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ie.chris.domain.User;
-import ie.chris.services.IUserService;
+import ie.chris.domain.*;
+import ie.chris.services.*;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	IUserService userService; 
+	
+	@Autowired
+	IProjectService projectService;
+	
+	@Autowired
+	IPledgeService pledgeService;
+	
 	
 	//Gets the sign up page
 	@GetMapping(value= {"/signup"})
@@ -45,5 +54,20 @@ public class UserController {
 		} 
 		return null;
 		
+	}
+
+	@GetMapping("/user")
+	public String handleRequestForUserPage(Model model) {
+		//@ TODO Replace With Auth 
+		User user = userService.findUserById(2);
+		model.addAttribute("user", user);
+		
+		List<Project> projectsOwned = projectService.findProjectsByUser(user);
+		model.addAttribute("projectsOwned", projectsOwned);
+		
+		List<Pledge> projectsPledged = pledgeService.findAll();
+		model.addAttribute("projectsPledged", projectsPledged);
+		
+		return "userpage";
 	}
 }

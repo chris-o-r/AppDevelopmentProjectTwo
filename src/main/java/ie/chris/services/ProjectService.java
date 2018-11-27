@@ -70,6 +70,12 @@ public class ProjectService implements IProjectService{
 		}
 		return false;
 	}
+
+	@Override
+	public boolean updateProjectInfo(Project project) {
+		projectDao.updateProjectInfo(project.getId(), project.getInfo());
+		return true;
+	}
 	
 	
 }

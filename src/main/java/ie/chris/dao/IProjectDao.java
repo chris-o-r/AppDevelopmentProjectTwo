@@ -17,11 +17,17 @@ public interface IProjectDao extends JpaRepository<Project, Integer> {
 	Project findById(int id);
 	Project findProjectByName(String projectName); 
 	List<Project> findAllByOrderByNameAsc();
-	//@Query("SELECT p FROM PROJECT p WHERE p.id = :userId")
 	List<Project> findProjectByCreator(User user);
+	
 	@Modifying(clearAutomatically = true)
 	@Transactional
 	@Query("UPDATE Project project set project.currentAmmount =:currentAmmount where project.id =:projectId")
 	void updateCurrentAmmount(@Param("projectId")int projectId, @Param("currentAmmount")double currentAmmount);
+	
+	@Modifying(clearAutomatically = true)
+	@Transactional
+	@Query("UPDATE Project project set project.info =:description where project.id =:projectId")
+	void updateProjectInfo(@Param("projectId")int projectId, @Param("description")String description);
+	
 	
 }
