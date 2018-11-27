@@ -16,5 +16,7 @@ public interface IPledgeDao extends JpaRepository<Pledge, Integer>{
 	
 	@Query("SELECT count(p) FROM Pledge p where p.project.id =:projectId")
 	int countPledgesForProject(@Param("projectId")int projectId);
+	//@Query("SELECT p FROM Pledge p where p.project.id =: porjectId")
+	List<Pledge> findByProjectId( int projectId);
 	
 }

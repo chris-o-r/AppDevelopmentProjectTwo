@@ -3,12 +3,17 @@ package ie.chris.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.List;
 
 import ie.chris.domain.Pledge;
 import ie.chris.domain.Project;
 import ie.chris.domain.User;
+import ie.chris.services.IPledgeService;
+import ie.chris.services.IUserService;
 import ie.chris.services.PledgeService;
 import ie.chris.services.ProjectService;
 import ie.chris.services.UserService;
@@ -23,10 +28,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class PledgeController {
 	
 	@Autowired
-	PledgeService pledgeService;
+	IPledgeService pledgeService;
 	
 	@Autowired
-	UserService userService;
+	IUserService userService;
 	
 	
 	@PostMapping("/pledge")
@@ -44,7 +49,17 @@ public class PledgeController {
 			return "redirect:project/"+pledge.getProject().getId();
 		}else {
 			return "error"; 
+		}	
+	}
+	
+	@GetMapping("/pledge/details/{id}")
+	public String handleRequestForPledgeDetailsPage(Model model, @PathVariable(name = "id") int id) {
+		List<Pledge> pledges = pledgeService.findAllPledgesByProjectId(1);
+		if (pledges != null && pledges.size() > 0) {
+			model.addAttribute("pledges", pledges);
+			return "pledgeDetails";
 		}
 		
+		return "pledgeDetails";
 	}
 }

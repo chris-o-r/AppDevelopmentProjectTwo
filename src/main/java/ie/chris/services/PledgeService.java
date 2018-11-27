@@ -66,4 +66,12 @@ public class PledgeService implements IPledgeService {
 		}
 		return res; 
 	}
+
+	@Override
+	public List<Pledge> findAllPledgesByProjectId(int projectId) {
+		if (projectId != 0) {
+			return pledgeDao.findByProjectId(projectId);
+		}
+		return null;
+	}
 }

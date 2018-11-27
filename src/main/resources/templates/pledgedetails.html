@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Crowd Funder</title>
+
+<!-- Bootstrap core CSS -->
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/nav-bar-style.css" type="text/css" />
+<link rel="stylesheet" href="/css/user-page-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+	<!-- Navigation -->
+	<ul>
+		<li><a class="active" href="#home">Home</a></li>
+		<li><a href="/">Projects</a></li>
+		<li><a href="/user">Account</a></li>
+		<li><a href="/project/create">Create A Project</a></li>
+	</ul>
+	<!-- Page Content -->
+	
+	<div class = "container">
+		<h3 class = "text-center">All Pledges For Project</h3>
+		<div>
+			<div class="boxed" th:each="pledges,iterationCount : ${pledges}" th:class="${iterationCount.even}? 'even'" th:object="${pledge}">
+					<h4 th:text="'Project Name' + *{pledge.user}"></h4>
+			</div>
+		</div>
+		<div class = "row boxed">
+			
+		</div>
+	</div>
+</body>
+</html>

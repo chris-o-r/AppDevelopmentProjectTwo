@@ -9,4 +9,5 @@ public interface IPledgeService {
 	boolean savePledge(Pledge pledge);
 	int getNumProjectsForPledge(Project project);
 	List<Pledge> findAll();
+	List<Pledge> findAllPledgesByProjectId(int projectId);
 }	

@@ -1,23 +1,30 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<!--Project Name As Title-->
-<title></title>
-</head>
-<link rel="stylesheet" th:href="@{/css/viewaporject-style.css}"
-	href="/css/nav-bar-style.css" type="text/css" />
 
-<link rel="stylesheet" th:href="@{/css/project-view-style.css}"
-	href="/css/project-view.css" type="text/css" />
+<head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title th:text="${project.name}"></title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" th:href="@{/css/project-view-style.css}" href="/css/project-view.css" type="text/css" />
+
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type = "text/css">
+
+</head>
+
+
 <body>
 
-		<!-- Navigation -->
+	<!-- Navigation -->
 	<ul>
 		<li><a class="active" href="#home">Home</a></li>
 		<li><a href="/">Projects</a></li>
 		<li><a href="/user">Account</a></li>
 		<li><a href="/project/create">Create A Project</a></li>
 	</ul>
-
 	<div class="projects" th:object="${project}">
 		<div class="project-container">
 
@@ -42,6 +49,9 @@
 					<hr>
 					<h3 th:text="${numPledges}" >Users Pledged</h3>
 					<span>Amount Of Pledges</span> <br>
+					<div class = "details-container">
+						<a th:href="'/pledge/details/'+*{id}">Details</a>
+					</div>
 					<hr>
 				</div>
 				<form method="post" th:action="@{/pledge}" th:object="${pledge}">
