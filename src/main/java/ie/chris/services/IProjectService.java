@@ -14,4 +14,6 @@ public interface IProjectService {
 	List<Project> findProjectsByUser(User user);
 	boolean save(Project project);
 	boolean updateProjectInfo(Project project);
+	boolean updateProjectStatus(Project project);
+	
 }

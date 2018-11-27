@@ -70,14 +70,6 @@ public class ProjectController {
 			return "createaproject";
 		}
 		
-		User user = userService.findUserById(1);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();
-		
-		
-		project.setCreator(user);
-		project.setDateCreated(dtf.format(now));
-		
 		if (projectService.save(project)) {
 			return "/index";
 		}
@@ -107,6 +99,6 @@ public class ProjectController {
 			return "redirect:/user";
 		}
 		
-		return "/error";
+		return "error";
 	}
 }

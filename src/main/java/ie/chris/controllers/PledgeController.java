@@ -43,8 +43,7 @@ public class PledgeController {
 			
 			return "redirect:project/"+pledge.getProject().getId();
 		}else {
-			return "/error";
-			//@ TODO Return Error 
+			return "error"; 
 		}
 		
 	}

@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 public class Project {
@@ -46,9 +47,21 @@ public class Project {
 	@DecimalMin("1.0") 
 	private double goal;
 	
+	
+	@Column()
+	@Value("${true}")
+	private boolean status; 
 
 	public Project() {
 	 }
+	
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	
 	public double getGoal() {
 		return goal;

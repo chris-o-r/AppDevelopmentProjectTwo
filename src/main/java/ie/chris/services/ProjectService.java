@@ -1,5 +1,7 @@
 package ie.chris.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.criterion.PropertyProjection;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ie.chris.dao.IProjectDao;
+import ie.chris.domain.Pledge;
 import ie.chris.domain.Project;
 import ie.chris.domain.User;
 
@@ -15,6 +18,9 @@ public class ProjectService implements IProjectService{
 
 	@Autowired 
 	IProjectDao projectDao;
+	
+	@Autowired
+	IUserService userService;
 	
 	@Override
 	public Project findProject(int id) {
@@ -51,12 +57,23 @@ public class ProjectService implements IProjectService{
 		return projects;
 	}
 
-	
 	@Override
 	public boolean save(Project project) {
 		boolean res = false; 
 		if (project != null) {
+			//Setting Status
+			project.setStatus(true);
+			//Setting Date
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();
+			project.setDateCreated(dtf.format(now));
+			//Setting Current User
+			//@ TODO Add Auth Code
+			project.setCreator(userService.findUserById(2));
+			//Saving the project
 			projectDao.save(project);
+			
+			
 			return true;
 		}else {
 			return res; 
@@ -67,15 +84,24 @@ public class ProjectService implements IProjectService{
 	public boolean updatePledgedAmmount(double ammount, Project project) {
 		if (project != null && ammount > 0 ) {
 			projectDao.updateCurrentAmmount(project.getId(), ammount);
+			project = findProject(project.getId());
+			if (project.getCurrentAmmount() >= project.getGoal()) {
+				project.setStatus(false);
+				updateProjectStatus(project);
+			}
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean updateProjectInfo(Project project) {
 		projectDao.updateProjectInfo(project.getId(), project.getInfo());
 		return true;
 	}
 	
+	public boolean updateProjectStatus(Project project) {
+		projectDao.updateProjectStatus(project.getId(), project.getStatus());
+		return true;
+	}
 	
 }
