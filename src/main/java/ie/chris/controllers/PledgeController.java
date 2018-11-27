@@ -1,4 +1,4 @@
-package ie.chris.controllers;
+		package ie.chris.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

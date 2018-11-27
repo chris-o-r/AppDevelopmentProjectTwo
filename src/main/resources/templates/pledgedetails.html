@@ -29,13 +29,14 @@
 	
 	<div class = "container">
 		<h3 class = "text-center">All Pledges For Project</h3>
-		<div>
-			<div class="boxed" th:each="pledges,iterationCount : ${pledges}" th:class="${iterationCount.even}? 'even'" th:object="${pledge}">
-					<h4 th:text="'Project Name' + *{pledge.user}"></h4>
-			</div>
-		</div>
 		<div class = "row boxed">
-			
+			<div class="boxed row-sm" th:each = "pledge, iterationCount : ${pledges}" th:class = "${iterationCount.even}? 'even'" th:object = "${pledge}">
+				<div class = "boxed row-sm">
+					<h4 th:text="'Project Name: ' + *{project.Name}"></h4>
+					<h4 th:text = "'User: ' + *{user.email}"  ></h4>
+					<h4 th:text="'Ammount: ' + *{pledged}"></h2>
+				</div>
+			</div>	
 		</div>
 	</div>
 </body>
