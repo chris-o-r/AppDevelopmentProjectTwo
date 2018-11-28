@@ -9,7 +9,6 @@ public interface IProjectService {
 	Project findProject(int id);
 	boolean deleteProject(int id);
 	boolean updatePledgedAmmount(double ammount, Project project);
-	Project findByName(String projectName);
 	List<Project> listInAlphabeticalOrder(); 
 	List<Project> findProjectsByUser(User user);
 	boolean save(Project project);

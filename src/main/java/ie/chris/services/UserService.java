@@ -1,11 +1,17 @@
 package ie.chris.services;
 
+import java.security.Principal;
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import ie.chris.dao.IRoleDao;
 import ie.chris.dao.IUserDao;
+import ie.chris.domain.Role;
 import ie.chris.domain.User;
 
 @Service
@@ -13,6 +19,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	IUserDao userDao; 
+	
+	@Autowired
+	IRoleDao roleDao; 
 	
 	@Override
 	public User findUserById(int id) {
@@ -51,6 +60,11 @@ public class UserService implements IUserService {
 		if (user != null) {
 			//Ensures the user does not already exist by that email
 			if (findUserByEmail(user.getEmail()) == null) {
+				//Creating the role 
+				Role role = new Role();
+				role.setEmail("email");
+				role.setDescription("user");
+				user.setRole(role);
 				//Creating the user
 				userDao.save(user);
 				return true;
@@ -58,6 +72,16 @@ public class UserService implements IUserService {
 			return false;
 		}
 		return false;
+	}
+
+	
+	@Override
+	public User getCurrentUser() {
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		String email = userDetails.getUsername();
+		User user = userDao.findByEmail(email);
+		return user;
 	}
 	
 	

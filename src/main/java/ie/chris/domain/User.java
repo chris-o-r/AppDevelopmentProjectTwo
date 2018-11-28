@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
@@ -22,6 +23,10 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	
 	@Column(nullable=false)
 	@Size(min=3, max=20)
@@ -38,9 +43,12 @@ public class User {
 	@Column(nullable = false)
 	private String password; 
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@OneToOne
+	@JoinColumn(name = "roleEmail", nullable = false)
+	private Role role;
+	
+	@Column
+	boolean enabled;
 	
 	@OneToMany(mappedBy="user", cascade= CascadeType.ALL)
 	private List<Pledge> pledges = new ArrayList<Pledge>(); 
@@ -51,6 +59,24 @@ public class User {
 	public User() { 
 	}
 	
+	public Role getRole() {
+		return role;
+	}
+
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(boolean userEnabled) {
+		this.enabled = userEnabled;
+	}
 	
 	public String getFirstName() {
 		return firstName;

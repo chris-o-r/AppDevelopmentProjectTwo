@@ -1,4 +1,4 @@
-/*package ie.chris.config;
+package ie.chris.config;
 
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -12,5 +12,3 @@ implements AuthenticationSuccessHandler {
 		setUseReferer(true);
 	}
 }
-
-*/

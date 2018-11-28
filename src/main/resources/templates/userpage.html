@@ -20,7 +20,6 @@
 
 	<!-- Navigation -->
 	<ul>
-		<li><a class="active" href="#home">Home</a></li>
 		<li><a href="/">Projects</a></li>
 		<li><a href="/user">Account</a></li>
 		<li><a href="/project/create">Create A Project</a></li>
@@ -36,11 +35,8 @@
 
 			<h3 th:text="*{email}"></h3>
 			<span>Email</span>
-
-			<hr>
-			<h3></h3>
-			<span>Name</span>
-			<hr>
+			
+			<button class = "btn btn-danger" onclick="window.location.href='/logout'">Log Out</button>
 		</div>
 
 		<div class="row boxed">
@@ -59,6 +55,7 @@
 						</a>
 						
 					</div>
+					<span id = "funding-status-span" th:if = "*{status == false}">Funding Complete</span>
 				</div>
 			</div>
 		</div>

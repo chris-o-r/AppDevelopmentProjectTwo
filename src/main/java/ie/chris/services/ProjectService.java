@@ -36,14 +36,8 @@ public class ProjectService implements IProjectService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	@Override
-	public Project findByName(String projectName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
 	public List<Project> listInAlphabeticalOrder() {
 		return  projectDao.findAllByOrderByNameAsc();
 	}
@@ -68,8 +62,7 @@ public class ProjectService implements IProjectService{
 			LocalDateTime now = LocalDateTime.now();
 			project.setDateCreated(dtf.format(now));
 			//Setting Current User
-			//@ TODO Add Auth Code
-			project.setCreator(userService.findUserById(2));
+			project.setCreator(userService.getCurrentUser());
 			//Saving the project
 			projectDao.save(project);
 			return true;

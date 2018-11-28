@@ -1,15 +1,16 @@
 package ie.chris;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import ie.chris.services.*;
+import ie.chris.dao.IRoleDao;
 import ie.chris.domain.*;
 
 @Component
@@ -24,23 +25,49 @@ public class DataLoader implements ApplicationRunner{
 	@Autowired
 	PledgeService pledgeService;
 	
+	@Autowired
+	IRoleDao roleDao;
+	
+	
+	@Autowired
+	PasswordEncoder passwordEncoder; 
+	
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
+		//Saving the roles
+		Role role = new Role();
+		role.setEmail("chris.o.riordan11@gmail.com");
+		role.setDescription("user");
+		roleDao.save(role);
+		
+		Role roleTwo = new Role();
+		roleTwo.setEmail("user@email.com");
+		roleTwo.setDescription("user");
+		roleDao.save(roleTwo);
+		
+		//Saving the user
 		User user = new User();
 		user.setFirstName("Chris"); 
 		user.setSecondName("O'Riordan"); 
-		user.setEmail("chris@email.com");
-		user.setPassword("password");
+		user.setEmail("chris.o.riordan11@gmail.com");
+		user.setPassword(passwordEncoder.encode("password"));
+		user.setRole(role);
+		user.setEnabled(true);
 		userService.saveUser(user);
 		
-		user = new User();
-		user.setFirstName("User"); 
-		user.setSecondName("33432"); 
-		user.setEmail("user@email.com");
-		user.setPassword("password");
-		userService.saveUser(user);
+		User user2 = new User();
+		user2.setFirstName("User"); 
+		user2.setSecondName("33432"); 
+		user2.setEmail("user@email.com");
+		user2.setPassword(passwordEncoder.encode("password"));
+		user2.setRole(roleTwo);
+		user2.setEnabled(true);
+		userService.saveUser(user2);
 		
+		
+/*		
 		//Adding Data For Projects 
 		Project project = new Project();
 		project.setName("Project One");
@@ -52,6 +79,7 @@ public class DataLoader implements ApplicationRunner{
 		project.setCreator(user);
 		projectService.save(project);
 		
+		//Adding Pledges
 		Pledge pledge = new Pledge(); 
 		pledge.setUser(user);
 		pledge.setProject(project);
@@ -67,7 +95,7 @@ public class DataLoader implements ApplicationRunner{
 		projectTwo.setCreator(user);
 		projectService.save(projectTwo);
 		
-		
+*/		
 	}
 
 }

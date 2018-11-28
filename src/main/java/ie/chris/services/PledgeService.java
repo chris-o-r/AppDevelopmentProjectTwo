@@ -30,8 +30,7 @@ public class PledgeService implements IPledgeService {
 		 *Checking to see if the user pledging created this project 
 		 */
 		boolean userOwnsProject = false;
-		//@ TODO Change this with actual auth code 
-		User user = userService.findUserById(1);
+		User user = userService.getCurrentUser();
 		if (user != null) {
 			List<Project> projects = (List<Project>) projectService.findProjectsByUser(user);
 			for(int i=0; i<projects.size(); i++) {
