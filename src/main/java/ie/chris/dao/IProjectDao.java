@@ -19,6 +19,9 @@ public interface IProjectDao extends JpaRepository<Project, Integer> {
 	List<Project> findAllByOrderByNameAsc();
 	List<Project> findProjectByCreator(User user);
 	
+	@Query("SELECT projects FROM Project projects WHERE projects.status =TRUE")
+	List<Project> findAllActiveProjects();
+	
 	@Modifying(clearAutomatically = true)
 	@Transactional
 	@Query("UPDATE Project project set project.currentAmmount =:currentAmmount where project.id =:projectId")
