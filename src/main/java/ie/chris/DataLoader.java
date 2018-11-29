@@ -28,7 +28,6 @@ public class DataLoader implements ApplicationRunner{
 	@Autowired
 	IRoleDao roleDao;
 	
-	
 	@Autowired
 	PasswordEncoder passwordEncoder; 
 	
@@ -36,36 +35,26 @@ public class DataLoader implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-		//Saving the roles
-		Role role = new Role();
-		role.setEmail("chris.o.riordan11@gmail.com");
-		role.setDescription("user");
-		roleDao.save(role);
-		
-		Role roleTwo = new Role();
-		roleTwo.setEmail("user@email.com");
-		roleTwo.setDescription("user");
-		roleDao.save(roleTwo);
-		
-		//Saving the user
+
+//		//Saving the user
 		User user = new User();
 		user.setFirstName("Chris"); 
-		user.setSecondName("O'Riordan"); 
+		user.setSecondName("O'Riordan"); 	
 		user.setEmail("chris.o.riordan11@gmail.com");
-		user.setPassword(passwordEncoder.encode("password"));
-		user.setRole(role);
+		user.setPassword("password");
+
 		user.setEnabled(true);
 		userService.saveUser(user);
-		
-		User user2 = new User();
-		user2.setFirstName("User"); 
-		user2.setSecondName("33432"); 
-		user2.setEmail("user@email.com");
-		user2.setPassword(passwordEncoder.encode("password"));
-		user2.setRole(roleTwo);
-		user2.setEnabled(true);
-		userService.saveUser(user2);
-		
+//		
+//		User user2 = new User(); 	
+//		user2.setFirstName("User"); 
+//		user2.setSecondName("33432"); 
+//		user2.setEmail("user@email.com");
+//		user2.setPassword(passwordEncoder.encode("password"));
+//		user2.setRole(roleTwo);
+//		user2.setEnabled(true);
+//		userService.saveUser(user2);
+//		
 		
 /*		
 		//Adding Data For Projects 

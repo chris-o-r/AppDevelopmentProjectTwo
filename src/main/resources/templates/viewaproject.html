@@ -55,7 +55,7 @@
 					<hr>
 				</div>
 				
-				<div class = "create-pledge-form-container" th:if="*{status == true}">
+				<div class = "create-pledge-form-container" th:if="*{status == true}" sec:authorize="isAuthenticated()">
 					<form method="post" th:action="@{/pledge}" th:object="${pledge}">
 						<input type="hidden" th:field="*{project}" value="${project}" /> <input
 							type="number" min=10 placeholder="Ammount To Pledge"

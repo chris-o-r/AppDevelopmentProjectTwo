@@ -7,6 +7,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ie.chris.dao.IRoleDao;
@@ -22,6 +23,10 @@ public class UserService implements IUserService {
 	
 	@Autowired
 	IRoleDao roleDao; 
+	
+	@Autowired
+	PasswordEncoder passwordEncoder; 
+
 	
 	@Override
 	public User findUserById(int id) {
@@ -62,9 +67,14 @@ public class UserService implements IUserService {
 			if (findUserByEmail(user.getEmail()) == null) {
 				//Creating the role 
 				Role role = new Role();
-				role.setEmail("email");
+				role.setEmail(user.getEmail());
 				role.setDescription("user");
+				roleDao.save(role);
 				user.setRole(role);
+				//Setting new encrypted password 
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
+				//Enabling the user 
+				user.setEnabled(true);
 				//Creating the user
 				userDao.save(user);
 				return true;

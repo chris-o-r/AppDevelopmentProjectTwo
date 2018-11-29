@@ -1,22 +1,31 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Create A Project</title>
 
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/create-a-project-style.css}"
-	href="/css/create-a-project-style.css.css" type="text/css" />
+<title>Crowd Funder</title>
 
+<!-- Bootstrap core CSS -->
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/create-a-project-style.css}" href="/css/index-style.css" type="text/css" />
+	<link rel = "stylesheet" th:href="@{/css/nav-bar-style.css}" href = "/css/nav-bar-style.css" type = "text/css"/>
 </head>
 
 <body>
+
+	<!-- Navigation -->
 	<ul>
-		<li><a class="active" href="#home">Home</a></li>
 		<li><a href="/">Projects</a></li>
 		<li><a href="/user">Account</a></li>
-		<li><a href="/project/create">Create A Project</a></li>
+		<li><a href="/create/project">Create A Project</a></li>
 	</ul>
-	
 	<div class="main">
 
 		<h1>Create A Project</h1>
@@ -43,5 +52,10 @@
 		</div>
 
 	</div>
+	
+	<!-- Bootstrap core JavaScript -->
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

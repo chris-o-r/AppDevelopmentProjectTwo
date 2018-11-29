@@ -42,14 +42,13 @@ public class UserController {
 	 * @return a new page
 	 * TODO add logic for confirm password 
 	 */
-	@PostMapping(value= {"/user"})
+	@PostMapping(value= {"/create/user"})
 	public String handleAddCountyRequest(@Valid User user, BindingResult binding, RedirectAttributes redirectAttributes) {
 		if (binding.hasErrors()) {
 			return "signup"; 
 		}
 		
 		if (userService.saveUser(user)) {
-			//Redirect home and authenticate
 			return "redirect:index"; 
 		} 
 		return null;
@@ -58,8 +57,7 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String handleRequestForUserPage(Model model) {
-		//@ TODO Replace With Auth 
-		User user = userService.findUserById(2);
+		User user = userService.getCurrentUser();
 		model.addAttribute("user", user);
 		
 		List<Project> projectsOwned = projectService.findProjectsByUser(user);

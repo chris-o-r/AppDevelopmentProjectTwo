@@ -41,8 +41,7 @@ public class PledgeController {
 		    return "redirect:project/"+pledge.getProject().getId();
 		}
 		
-		//@ TODO Remove this step with actual login code 
-		User user = userService.findUserById(1);
+		User user = userService.getCurrentUser(); 
 		pledge.setUser(user);
 		
 		if (pledgeService.savePledge(pledge)) {

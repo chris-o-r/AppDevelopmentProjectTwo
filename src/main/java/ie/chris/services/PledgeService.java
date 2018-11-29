@@ -46,7 +46,7 @@ public class PledgeService implements IPledgeService {
 
 
 			if (userOwnsProject == false && pledge.getProject().getStatus() == true) {
-				//Savivng the pledge 
+				//Saving the pledge 
 				pledgeDao.save(pledge);
 				//Updating the project pledged ammunt 
 				projectService.updatePledgedAmmount(pledge.getPledged(), pledge.getProject());

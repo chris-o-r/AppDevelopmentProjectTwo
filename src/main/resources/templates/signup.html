@@ -7,18 +7,19 @@
 <title>Crowd-Funder Sign Up</title>
 <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="/css/nav-bar-style.css" type="text/css" />
+	
 </head>
 <body>
 	<!-- Navigation -->
 	<ul>
-		<li><a class="active" href="#home">Home</a></li>
 		<li><a href="/">Projects</a></li>
 		<li><a href="/user">Account</a></li>
-		<li><a href="/project/create">Create A Project</a></li>
+		<li><a href="/create/project">Create A Project</a></li>
 	</ul>
 	<div class="container">
 		<div class="signup-form">
-			<form id="newUserForm" method="post" th:action="@{/user}" th:object="${user}">
+			<form id="newUserForm" method="post" th:action="@{/create/user}" th:object="${user}">
 				<h2>Register</h2>
 				<p class="hint-text">Create your account. It's free and only takes a minute.</p>
 				<div class="form-group">
@@ -52,7 +53,7 @@
 				</div>
 			</form>
 			<div class="text-center">
-				Already have an account? <a href="#">Sign in</a>
+				Already have an account? <a href="/login">Sign in</a>
 			</div>
 		</div>
 	</div>

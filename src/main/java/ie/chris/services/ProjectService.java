@@ -80,6 +80,7 @@ public class ProjectService implements IProjectService{
 			if (project.getCurrentAmmount() >= project.getGoal()) {
 				project.setStatus(false);
 				updateProjectStatus(project);
+				return true;
 			}
 		}
 		return false;

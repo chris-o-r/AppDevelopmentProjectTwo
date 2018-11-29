@@ -55,7 +55,7 @@ public class ProjectController {
 		return "viewaproject";
 	}
 	
-	@GetMapping("/project/create")
+	@GetMapping("/create/project")
 	public String handleRequestForCreateAProjectPage(Model model) {
 		Project project = new Project(); 
 		model.addAttribute("project", project); 
@@ -78,7 +78,7 @@ public class ProjectController {
 		
 	}
 	
-	@GetMapping("/project/edit/{id}")
+	@GetMapping("/edit/project/{id}")
 	public String handlePageRequestForEditDescriptionPage(@PathVariable(name="id") int id, Model model) {
 		Project project = projectService.findProject(id);
 		if(project != null) {
@@ -89,7 +89,7 @@ public class ProjectController {
 	}
 	
 	
-	@PostMapping("/project/update/info")
+	@PostMapping("/edit/project/info")
 	public String handleUpdateDescriptionRequest(Project project, RedirectAttributes redirectAttributes) {
 		String info = project.getInfo();
 		project = projectService.findProject(project.getId());

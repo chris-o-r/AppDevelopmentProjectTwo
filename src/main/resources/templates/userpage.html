@@ -16,13 +16,11 @@
 </head>
 
 <body>
-
-
 	<!-- Navigation -->
 	<ul>
 		<li><a href="/">Projects</a></li>
 		<li><a href="/user">Account</a></li>
-		<li><a href="/project/create">Create A Project</a></li>
+		<li><a href="/create/project">Create A Project</a></li>
 	</ul>
 	<!-- Page Content -->
 	<div class="container">
@@ -50,7 +48,7 @@
 					<span>Current: $</span><span th:text="*{currentAmmount}">Amount</span>
 					<p />
 					<div class = "button-container float-right">
-						<a th:href="'project/edit/' + *{id}" class="btn btn-primary btn-md" role="button" aria-disabled="true">
+						<a th:href="'/edit/project/' + *{id}" class="btn btn-primary btn-md" role="button" aria-disabled="true">
 							Edit Project
 						</a>
 						
